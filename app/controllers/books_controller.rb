@@ -3,13 +3,12 @@ class BooksController < ApplicationController
   before_action :baria_book, only: [:edit, :update]
 
   def show
-    @book = Book.new
-  	@post_book = Book.find(params[:id])
+    @book = Book.find(params[:id])
     @book_comment = BookComment.new
+ 
   end
 
   def index
-    @book = Book.new
   	@books = Book.all #一覧表示するためにBookモデルの情報を全てくださいのall
   end
 
@@ -35,7 +34,7 @@ class BooksController < ApplicationController
   	if @book.update(book_params)
   		redirect_to @book, notice: "successfully updated book!"
   	else #if文でエラー発生時と正常時のリンク先を枝分かれにしている。
-  		render "edit"
+  		render 'edit'
   	end
   end
 
